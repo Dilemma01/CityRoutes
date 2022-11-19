@@ -12,12 +12,16 @@ package logic;
  * @author PC-2018
  */
 public class Init {
+    private City city;
 
-   
-    
+    public City getCity() {
+        return city;
+    }
+
+
     public Init() {
 
-        City city = new City("Havana");
+        city = new City("Havana");
 
         //************GUAGUAS************
         Bus b1 = new Bus("P1");
@@ -109,58 +113,58 @@ public class Init {
         city.getBusList().add(b9);
         
         //************INSERTAR PARADAS EN EL GRAFO************
-        city.getBusStopList().insertVertex(bs1);
-        city.getBusStopList().insertVertex(bs2);
-        city.getBusStopList().insertVertex(bs3);
-        city.getBusStopList().insertVertex(bs4);
-        city.getBusStopList().insertVertex(bs5);
-        city.getBusStopList().insertVertex(bs6);
-        city.getBusStopList().insertVertex(bs7);
-        city.getBusStopList().insertVertex(bs8);
-        city.getBusStopList().insertVertex(bs9);
-        city.getBusStopList().insertVertex(bs10);
-        city.getBusStopList().insertVertex(bs11);
-        city.getBusStopList().insertVertex(bs12);
-        city.getBusStopList().insertVertex(bs13);
-        city.getBusStopList().insertVertex(bs14);
-        city.getBusStopList().insertVertex(bs15);
-        city.getBusStopList().insertVertex(bs16);
-        city.getBusStopList().insertVertex(bs17);
-        city.getBusStopList().insertVertex(bs18);
-        city.getBusStopList().insertVertex(bs19);
-        city.getBusStopList().insertVertex(bs20);
-        city.getBusStopList().insertVertex(bs21);
+        city.getBusStopGraph().insertVertex(bs1);
+        city.getBusStopGraph().insertVertex(bs2);
+        city.getBusStopGraph().insertVertex(bs3);
+        city.getBusStopGraph().insertVertex(bs4);
+        city.getBusStopGraph().insertVertex(bs5);
+        city.getBusStopGraph().insertVertex(bs6);
+        city.getBusStopGraph().insertVertex(bs7);
+        city.getBusStopGraph().insertVertex(bs8);
+        city.getBusStopGraph().insertVertex(bs9);
+        city.getBusStopGraph().insertVertex(bs10);
+        city.getBusStopGraph().insertVertex(bs11);
+        city.getBusStopGraph().insertVertex(bs12);
+        city.getBusStopGraph().insertVertex(bs13);
+        city.getBusStopGraph().insertVertex(bs14);
+        city.getBusStopGraph().insertVertex(bs15);
+        city.getBusStopGraph().insertVertex(bs16);
+        city.getBusStopGraph().insertVertex(bs17);
+        city.getBusStopGraph().insertVertex(bs18);
+        city.getBusStopGraph().insertVertex(bs19);
+        city.getBusStopGraph().insertVertex(bs20);
+        city.getBusStopGraph().insertVertex(bs21);
 
         //************INSERTAR PESO ENTRE LAS PARADAS************
-       /* city.getRoutes().insertWEdgeNDG(1, 0, 800);
-        city.getRoutes().insertWEdgeNDG(9, 0, 700);
-        city.getRoutes().insertWEdgeNDG(4, 0, 400);
-        city.getRoutes().insertWEdgeNDG(9, 1, 800);
-        city.getRoutes().insertWEdgeNDG(6, 1, 900);
-        city.getRoutes().insertWEdgeNDG(2, 1, 550);
-        city.getRoutes().insertWEdgeNDG(5, 1, 800);
-        city.getRoutes().insertWEdgeNDG(6, 2, 200);
-        city.getRoutes().insertWEdgeNDG(7, 2, 600);
-        city.getRoutes().insertWEdgeNDG(9, 6, 600);
-        city.getRoutes().insertWEdgeNDG(3, 2, 700);
-        city.getRoutes().insertWEdgeNDG(8, 3, 800);
-        city.getRoutes().insertWEdgeNDG(16, 3, 400);
-        city.getRoutes().insertWEdgeNDG(5, 4, 800);
-        city.getRoutes().insertWEdgeNDG(11, 4, 1000);
-        city.getRoutes().insertWEdgeNDG(10, 4, 1150);
-        city.getRoutes().insertWEdgeNDG(7, 5, 100);
-        city.getRoutes().insertWEdgeNDG(15, 6, 1300);
-        city.getRoutes().insertWEdgeNDG(14, 6, 700);
-        city.getRoutes().insertWEdgeNDG(2, 8, 200);
-        city.getRoutes().insertWEdgeNDG(19, 10, 100);
-        city.getRoutes().insertWEdgeNDG(12, 11, 1150);
-        city.getRoutes().insertWEdgeNDG(19, 11, 1100);
-        city.getRoutes().insertWEdgeNDG(18, 11, 1300);
-        city.getRoutes().insertWEdgeNDG(14, 13, 600);
-        city.getRoutes().insertWEdgeNDG(16, 13, 1150);
-        city.getRoutes().insertWEdgeNDG(17, 16, 1100);
-        city.getRoutes().insertWEdgeNDG(18, 17, 1300);
-        city.getRoutes().insertWEdgeNDG(20, 18, 100); */
+        city.getBusStopGraph().insertWEdgeNDG(1, 0, 800);
+        city.getBusStopGraph().insertWEdgeNDG(9, 0, 700);
+        city.getBusStopGraph().insertWEdgeNDG(4, 0, 400);
+        city.getBusStopGraph().insertWEdgeNDG(9, 1, 800);
+        city.getBusStopGraph().insertWEdgeNDG(6, 1, 900);
+        city.getBusStopGraph().insertWEdgeNDG(2, 1, 550);
+        city.getBusStopGraph().insertWEdgeNDG(5, 1, 800);
+        city.getBusStopGraph().insertWEdgeNDG(6, 2, 200);
+        city.getBusStopGraph().insertWEdgeNDG(7, 2, 600);
+        city.getBusStopGraph().insertWEdgeNDG(9, 6, 600);
+        city.getBusStopGraph().insertWEdgeNDG(3, 2, 700);
+        city.getBusStopGraph().insertWEdgeNDG(8, 3, 800);
+        city.getBusStopGraph().insertWEdgeNDG(16, 3, 400);
+        city.getBusStopGraph().insertWEdgeNDG(5, 4, 800);
+        city.getBusStopGraph().insertWEdgeNDG(11, 4, 1000);
+        city.getBusStopGraph().insertWEdgeNDG(10, 4, 1150);
+        city.getBusStopGraph().insertWEdgeNDG(7, 5, 100);
+        city.getBusStopGraph().insertWEdgeNDG(15, 6, 1300);
+        city.getBusStopGraph().insertWEdgeNDG(14, 6, 700);
+        city.getBusStopGraph().insertWEdgeNDG(2, 8, 200);
+        city.getBusStopGraph().insertWEdgeNDG(19, 10, 100);
+        city.getBusStopGraph().insertWEdgeNDG(12, 11, 1150);
+        city.getBusStopGraph().insertWEdgeNDG(19, 11, 1100);
+        city.getBusStopGraph().insertWEdgeNDG(18, 11, 1300);
+        city.getBusStopGraph().insertWEdgeNDG(14, 13, 600);
+        city.getBusStopGraph().insertWEdgeNDG(16, 13, 1150);
+        city.getBusStopGraph().insertWEdgeNDG(17, 16, 1100);
+        city.getBusStopGraph().insertWEdgeNDG(18, 17, 1300);
+        city.getBusStopGraph().insertWEdgeNDG(20, 18, 100);
 
 
         /*Deque<BusStop> test_path = city.shortestPath(1, 20);
