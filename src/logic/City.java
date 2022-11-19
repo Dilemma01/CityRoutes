@@ -10,10 +10,18 @@ import java.util.*;
 
 public class City {
     private String id;
-    private ILinkedWeightedEdgeNotDirectedGraph routes;
+    private ILinkedWeightedEdgeNotDirectedGraph busStopList;
 
-    public City() {
-        routes = new LinkedGraph();
+    private LinkedList<Bus> busList;
+
+    public City(String id) {
+        setId(id);
+        busStopList = new LinkedGraph();
+        busList = new LinkedList<>();
+    }
+
+    public LinkedList<Bus> getBusList() {
+        return busList;
     }
 
     public String getId() {
@@ -24,15 +32,15 @@ public class City {
         this.id = id;
     }
 
-    public ILinkedWeightedEdgeNotDirectedGraph getRoutes() {
-        return routes;
+    public ILinkedWeightedEdgeNotDirectedGraph getBusStopList() {
+        return busStopList;
     }
 
     public Deque<BusStop> shortestPath(int pos_bs1, int pos_bs2)throws IllegalArgumentException{
         //routes.removeDisconnectVerticesND();
         if(posInRange(pos_bs1) && posInRange(pos_bs2)) {
             Deque<BusStop> result = new ArrayDeque<>();
-            LinkedList<Vertex> vertexList = routes.getVerticesList();
+            LinkedList<Vertex> vertexList = busStopList.getVerticesList();
             Map<Vertex, Vertex> dijsktra_path = pathDijsktraAlgorithm(pos_bs1, pos_bs2);
             Iterator<Vertex> iter = vertexList.iterator();
             boolean founded = false;
@@ -61,7 +69,7 @@ public class City {
             Map<Vertex, Vertex> result = new HashMap<>();
             ArrayList<DijsktraVertex> d_vertexList = new ArrayList<>();
             int i = 0;
-            Iterator<Vertex> iter = routes.getVerticesList().iterator();
+            Iterator<Vertex> iter = busStopList.getVerticesList().iterator();
             while(iter.hasNext()){
                 Vertex aux = iter.next();
                 if(i != pos_bs1){
@@ -137,7 +145,7 @@ public class City {
     }
 
     private boolean posInRange(int pos) {
-        return pos > -1 && pos < routes.getVerticesList().size();
+        return pos > -1 && pos < busStopList.getVerticesList().size();
     }
 
     public boolean insertBus(Bus bus){
