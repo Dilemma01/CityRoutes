@@ -1,5 +1,6 @@
 package logic;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 public class Bus {
@@ -32,6 +33,20 @@ public class Bus {
     }
 
 
-
-
+    public String busPath(BusStop tail, BusStop head) {
+        String result = "no";
+        Iterator<BusStop> iter = route.iterator();
+        boolean founded = false;
+        while (!founded && iter.hasNext()) {
+            BusStop bs1 = iter.next();
+            if((bs1.equals(tail) || bs1.equals(head)) && iter.hasNext()){
+                BusStop bs2 = iter.next();
+                if ((bs1.equals(tail) && bs2.equals(head)) || (bs1.equals(head) && bs2.equals(tail))){
+                    founded = true;
+                    result = this.id;
+                }
+            }
+        }
+        return result;
+    }
 }

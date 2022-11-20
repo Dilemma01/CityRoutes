@@ -168,4 +168,33 @@ public class City {
         return true;
     }
 
+    public ArrayList<Object[]> shortPathResponse(int pos_bs1, int pos_bs2){
+        ArrayList<Object[]> result = new ArrayList<>();
+        Deque<BusStop> sh_path = shortestPath(pos_bs1, pos_bs2);
+        if(sh_path.size() > 1) {
+            BusStop tail = sh_path.pop();
+            while (!sh_path.isEmpty()) {
+                BusStop head = sh_path.pop();
+                result.add(travelKind(tail, head));
+                tail = head;
+            }
+        }
+        return result;
+    }
+
+    private Object[] travelKind(BusStop tail, BusStop head) {
+        Object[]result = {tail, "no", head};
+        Iterator<Bus> iter = busList.iterator();
+        boolean founded = false;
+        while(iter.hasNext() && !founded){
+            Bus bus = iter.next();
+            String bp = bus.busPath(tail, head);
+            if(!bp.equalsIgnoreCase("no")){
+                founded = true;
+                result [1] = bp;
+            }
+        }
+        return result;
+    }
+
 }
