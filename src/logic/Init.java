@@ -56,6 +56,8 @@ public class Init {
         BusStop bs19 = new BusStop("San Pedro");
         BusStop bs20 = new BusStop("Siboney");
         BusStop bs21 = new BusStop("Las Marias");
+        BusStop bs22 = new BusStop("Pruebas");
+
 
         //************ASIGNACION DE PARADAS A LAS GUAGUAS************
         b1.getRoute().add(bs1);
@@ -134,6 +136,7 @@ public class Init {
         city.getBusStopGraph().insertVertex(bs19);
         city.getBusStopGraph().insertVertex(bs20);
         city.getBusStopGraph().insertVertex(bs21);
+        city.getBusStopGraph().insertVertex(bs22);
 
         //************INSERTAR PESO ENTRE LAS PARADAS************
         city.getBusStopGraph().insertWEdgeNDG(1, 0, 800);
@@ -165,6 +168,7 @@ public class Init {
         city.getBusStopGraph().insertWEdgeNDG(17, 16, 1100);
         city.getBusStopGraph().insertWEdgeNDG(18, 17, 1300);
         city.getBusStopGraph().insertWEdgeNDG(20, 18, 100);
+        //city.getBusStopGraph().insertWEdgeNDG(21, 18, 100);
 
 
         /*Deque<BusStop> test_path = city.shortestPath(1, 20);

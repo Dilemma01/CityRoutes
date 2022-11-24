@@ -6,6 +6,7 @@ import cu.edu.cujae.ceis.graph.edge.WeightedEdge;
 import cu.edu.cujae.ceis.graph.interfaces.ILinkedWeightedEdgeNotDirectedGraph;
 import cu.edu.cujae.ceis.graph.vertex.Vertex;
 
+import javax.swing.*;
 import java.util.*;
 
 public class City {
@@ -52,7 +53,12 @@ public class City {
                     while (!pushed.equals(vertexList.get(pos_bs1).getInfo())) {
                         result.push(pushed);
                         aux = dijsktra_path.get(aux);
-                        pushed = (BusStop) aux.getInfo();
+                        if(aux==null){
+                            throw new IllegalArgumentException("CAMINANTE NO HAY CAMINO, SE HACE CAMINO AL ANDAR");
+                        }else{
+                            pushed = (BusStop) aux.getInfo();
+                        }
+
                     }
                     result.push(pushed);
                 }
