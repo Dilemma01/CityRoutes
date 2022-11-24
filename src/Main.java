@@ -1,4 +1,3 @@
-//import Interfaz.Principal;
 import logic.BusStop;
 import logic.Init;
 
