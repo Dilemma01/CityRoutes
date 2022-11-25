@@ -49,4 +49,8 @@ public class Bus {
         }
         return result;
     }
+
+    public void setRoute(LinkedList<BusStop> route) {
+        this.route = route;
+    }
 }

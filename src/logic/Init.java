@@ -5,8 +5,6 @@
  */
 package logic;
 
-//import Interfaz.Principal;
-
 /**
  *
  * @author PC-2018
