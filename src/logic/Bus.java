@@ -27,12 +27,6 @@ public class Bus {
     public boolean addBusStop(LinkedList<BusStop> route, BusStop predecesor) {
        return true;
     }
-
-    public boolean deleteBusStop(BusStop bs){
-        return true;
-    }
-
-
     public String busPath(BusStop tail, BusStop head) {
         String result = "no";
         Iterator<BusStop> iter = route.iterator();
@@ -52,5 +46,27 @@ public class Bus {
 
     public void setRoute(LinkedList<BusStop> route) {
         this.route = route;
+    }
+
+    //Metodo para dado una parada devolver true o false si la guagua pasa por esa parada
+    public boolean haveBusStop(BusStop busStop) {
+        boolean result = false;
+        Iterator<BusStop> iter = route.iterator();
+
+        while(iter.hasNext() && !result) {
+            if(iter.next().equals(busStop)) {
+                result = true;
+            }
+        }
+
+        return result;
+    }
+
+    //Metodo para eliminar una parada de la lista de paradas
+    public boolean deleteBusStop(BusStop delete) {
+        boolean result = route.remove(delete);
+        return result;
+
+
     }
 }
