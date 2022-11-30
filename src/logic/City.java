@@ -627,7 +627,7 @@ public class City {
         while(iterBus.hasNext()) {
             Bus actual = iterBus.next();
             if(actual.haveBusStop(busStop)) {
-                busList.add(actual);
+                result.add(actual);
             }
 
         }
