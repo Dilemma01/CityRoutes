@@ -69,4 +69,29 @@ public class Bus {
 
 
     }
+    /*\
+     * 		Enrique nov 27
+     *
+     * La usa City para al insertar una ruta verificar q un Bus ya realiza es ruta
+     *
+     */
+    public boolean routesMatches(LinkedList<BusStop> new_route) {
+        boolean result=true;
+
+        if(new_route.size() != this.route.size())
+            result=false;
+        else {
+            Iterator<BusStop> iter_1 = this.route.iterator();
+            Iterator<BusStop> iter_2 = new_route.iterator();
+
+            while (iter_1.hasNext() && iter_2.hasNext()) {
+                String name_1 = iter_1.next().getName();
+                String name_2 = iter_2.next().getName();
+
+                if( !(name_1.equalsIgnoreCase(name_2)) )
+                    result=false;
+            }
+        }
+        return result;
+    }
 }
