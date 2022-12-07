@@ -12,7 +12,7 @@ public class Main {
         Init init = new Init();
         new BusStop("Alberro");
         init.getCity().deleteBusStop("Pruebas");
-        init.getCity().deleteBusStop("Alberro");
+        //init.getCity().deleteBusStop("Alberro");
 
         //Test.show_shortestPathResponse(init.getCity(), 1, 10);
         Test.show_Buses(init.getCity());
@@ -21,14 +21,14 @@ public class Main {
         MainFrame p = new MainFrame(init.getCity());
         p.setVisible(true);
 
-        Deque<BusStop>path = init.getCity().shortestPath(1,9);
+        Deque<BusStop>path = init.getCity().shortestPath(1,10);
         System.out.println("*****Camino mas corto*****");
         while(!path.isEmpty()){
             System.out.println(path.pop());
         }
         System.out.println("");
         System.out.println("*****Camino mas corto con ruta que debes coger o si es caminando*****");
-        ArrayList<Object[]> test2 = init.getCity().shortPathResponse(1, 9);
+        ArrayList<Object[]> test2 = init.getCity().shortPathResponse(1, 10);
         System.out.println(test2.get(0)[0]);
         for(Object[] o : test2){
             System.out.println(o[1]);
