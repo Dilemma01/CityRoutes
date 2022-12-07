@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
 
         Init init = new Init();
-        BusStop bs = new BusStop("Alberro");
+        new BusStop("Alberro");
         init.getCity().deleteBusStop("Pruebas");
         init.getCity().deleteBusStop("Alberro");
 
@@ -18,8 +18,8 @@ public class Main {
         Test.show_Buses(init.getCity());
         Test.show_Buses_with_route(init.getCity());
         Test.show_BusesStop(init.getCity());
-        //MainFrame p = new MainFrame(init.getCity());
-        //p.setVisible(true);
+        MainFrame p = new MainFrame(init.getCity());
+        p.setVisible(true);
 
         Deque<BusStop>path = init.getCity().shortestPath(1,9);
         System.out.println("*****Camino mas corto*****");
