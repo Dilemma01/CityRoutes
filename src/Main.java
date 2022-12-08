@@ -17,7 +17,6 @@ public class Main {
         init.getCity().insertPathBetweenBusStop("Alberro", "Terminal Cotorro", 800);
         init.getCity().insertPathBetweenBusStop("Alberro", "51 y 250", 1150);
         init.getCity().insertPathBetweenBusStop("Alberro", "La Punta", 1000);
-        new BusStop("Alberro");
         init.getCity().deleteBusStop("Pruebas");
         //init.getCity().deleteBusStop("Alberro");
 
