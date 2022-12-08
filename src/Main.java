@@ -10,9 +10,13 @@ public class Main {
     public static void main(String[] args) {
 
         Init init = new Init();
-        BusStop bs = new BusStop("Alberro");
         init.getCity().deleteBusStop("Pruebas");
         init.getCity().deleteBusStop("Alberro");
+        init.getCity().insertBusStop("Alberro");
+        init.getCity().insertPathBetweenBusStop("Alberro", "La Rosita", 400);
+        init.getCity().insertPathBetweenBusStop("Alberro", "Terminal Cotorro", 800);
+        init.getCity().insertPathBetweenBusStop("Alberro", "51 y 250", 1150);
+        init.getCity().insertPathBetweenBusStop("Alberro", "La Punta", 1000);
 
         //Test.show_shortestPathResponse(init.getCity(), 1, 10);
         Test.show_Buses(init.getCity());

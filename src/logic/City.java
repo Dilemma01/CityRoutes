@@ -168,8 +168,18 @@ public class City {
      * . annadir a la lista del bus
      * . annadir el bus a la lista de City
      */
-    public boolean insertBus_withRoute (Bus bus, LinkedList<BusStop> route){
+    public boolean insertBus_withRoute (String bus_string, LinkedList<String> route_string){
         boolean done = true;
+        Bus bus = buscarBusId(bus_string);
+        LinkedList<BusStop> route = new LinkedList<>();
+
+        Iterator<String> iterRoute = route_string.iterator();
+        while(iterRoute.hasNext()){
+            BusStop bs_aux = buscarBusStopId(iterRoute.next());
+            if(bs_aux != null){
+                route.add(bs_aux);
+            }
+        }
 
         if( bus==null || route == null ) {// primero si no son null
             done = false;
@@ -218,7 +228,6 @@ public class City {
                 if(index1 < 0 || index2 < 0){
                     result = false;
                 }
-
                 else{
                     result = this.busStopGraph.areAdjacents(index1, index2);
                     index1 = index2;
@@ -274,90 +283,54 @@ public class City {
      * Para insertar una nueva BusStop (Vertice) utiliza la funcion existsBusStopID
      * para garantizar q no exista otra con ese ID
      */
-    public boolean insertBusStop(BusStop bs) {
+    public boolean insertBusStop(String bs_string) {
         boolean result=false;
 
-        if(!(existsBusStopID(bs.getName()))) {
-            busStopGraph.insertVertex(bs);
+        if(!existsBusStopID(bs_string)) {
+            busStopGraph.insertVertex(new BusStop(bs_string));
             result=true;
         }
         return result;
     }
-    /*
-     * 		Enrique nov28
-     *
-     * Insertar la distance entre 2 BusStop donde la 1 debera estar ya en grafo si este no está vacio
-     * la 2 podra estar o no
-     *
-     * @return false si parada 1 o 2 es null, o si parada1 no está en el grafo
-     *
-     * si el grafo esta vacio insertar ambos (pos 0 y pos 1) y annadir el arco con el peso
-     * si 2 no está en el grafo, insertarlo y annadir el arco con peso
-     * si 2 YA está en el grafo, buscar el índice, eliminar Arista entre 1 y 2 mientras
-     * tenga, y annadir el arco con el peso
-     *
-     * 		No Supe verificar el peso
-     *
-     */
-    public boolean insertBusStop(BusStop bs1, BusStop bs2, int distance){
-        boolean result=true;
 
-        if(bs1!=null && bs2!=null && distance > 0) {
-            int index_1, index_2;
-
-            if(!(this.busStopGraph.isEmpty())){ // si el grafo no esta vacio
-
-                if(existsBusStopID(bs1.getName())) { // que 1 este ya en el grafo
-                    index_1 = indexOf_BusStop_Descending(bs1);
-
-                    if(!(existsBusStopID(bs2.getName()))){ // si 2 es nueva
-                        insertBusStop(bs2);
-                        index_2 = indexOf_BusStop_Descending(bs2);
-                        this.busStopGraph.insertWEdgeNDG(index_1, index_2, distance);
-                    }
-                    else {  // si 2 ya estaba
-                        index_2 = indexOf_BusStop_Descending(bs2);
-
-                        // eliminar todos los arcos que tengan 1 y 2
-                        boolean deleted = true;
-                        while (deleted)
-                            deleted = this.busStopGraph.deleteEdgeND(index_1, index_2);
-
-                        // insertar arco con peso
-                        this.busStopGraph.insertWEdgeNDG(index_1, index_2, distance);
-                    }
-                }
-                else		// si bs1 no esta ya en el grafo no se puede hacer la operacion
-                    result = false;
-            }
-            else { // grafo vacio por lo tanto ambos son nuevos
-                insertBusStop(bs1); // indice 0
-                insertBusStop(bs2); // indice 1
-                this.busStopGraph.insertWEdgeNDG(0, 1, distance);
-            }
-        }
-        else {    // si alguno de los 2 buses es null
-            result = false;
-        }
-
-        return result;
-    }
-    public boolean insertBus(Bus bus) {
+    public boolean insertBusStopWithPath(String bsExistent_string, String bsNew_string, int distance){
         boolean result = false;
+        BusStop bsExistent = buscarBusStopId(bsExistent_string);
 
-        if(!(existsBusID(bus.getId()))) {
-            result=true;
-            this.busList.add(bus);
+        if((bsExistent != null) && !(existsBusStopID(bsNew_string)) && (distance > 0)) {
+            int index_existent = busStopIndex(bsExistent);
+            insertBusStop(bsNew_string);
+            BusStop bsNew = buscarBusStopId(bsNew_string);
+            int index_new = indexOf_BusStop_Descending(bsNew);
+            this.busStopGraph.insertWEdgeNDG(index_existent, index_new, distance);
+            result = true;
+        }
+
+        return result;
+    }
+
+    public boolean insertPathBetweenBusStop (String bs1_string, String bs2_string, int distance){
+        boolean result = false;
+        BusStop bs1 = buscarBusStopId(bs1_string);
+        BusStop bs2 = buscarBusStopId(bs2_string);
+        if((bs1 != null) && (bs2 != null)) {
+            LinkedList<BusStop> bsList = new LinkedList<>();
+            bsList.add(bs1);
+            bsList.add(bs2);
+            if(!exists_thisPath_inTheGraph(bsList)){
+                this.busStopGraph.insertWEdgeNDG(busStopIndex(bs1), busStopIndex(bs2), distance);
+            }
         }
         return result;
     }
-    /*
-     * 			Enrique nov??
-     *
-     * Verifica por cada Bus para garantizar que ninguna ya tenga esta
-     * misma ruta
-     *
-     */
+    public boolean insertBus(String bus_string) {
+        boolean result = false;
+        if(!existsBusID(bus_string)) {
+            result=true;
+            this.busList.add(new Bus(bus_string));
+        }
+        return result;
+    }
     private boolean alreadyExists_Route(LinkedList<BusStop> route) {
         boolean result=false;
         Iterator<Bus> iter = this.busList.iterator();
@@ -367,12 +340,6 @@ public class City {
         }
         return result;
     }
-    /*
-     * 		Enrique nov24
-     *
-     * garantiza q no exista otra con ese ID
-     * return true si ya existe
-     */
     private boolean existsBusStopID(String bs_id) {
         boolean result=false;
         Iterator<Vertex> iter = busStopGraph.getVerticesList().iterator();
