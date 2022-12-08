@@ -153,21 +153,6 @@ public class City {
         return pos > -1 && pos < busStopGraph.getVerticesList().size();
     }
 
-    /*
-     * 		Enrique nov 28, 2130 actualizado
-     *
-     * Se inserta en la City un nuevo Bus con su Ruta
-     *
-     * Se verifica q:
-     *  - el Bus no exista ya con su ID
-     *  - de ese lista no haya paradas repetidas en si misma   [funcion: repeatedBusStop]
-     *  - que todas las paradas ya esten en el grafo
-     *
-     * Cuando todo esta correcto:
-     * . vaciar la lista q trae bus
-     * . annadir a la lista del bus
-     * . annadir el bus a la lista de City
-     */
     public boolean insertBus_withRoute (String bus_string, LinkedList<String> route_string){
         boolean done = true;
         Bus bus = buscarBusId(bus_string);
@@ -211,9 +196,7 @@ public class City {
         }
         return index;
     }
-    /*
-     * 			Enrique  nov28
-     */
+
     private boolean exists_thisPath_inTheGraph(LinkedList<BusStop> route) {
         boolean result = true;
         if(route.size() < 2){
@@ -249,11 +232,7 @@ public class City {
         }
         return result;
     }
-    /*
-     * 			Enrique nov24
-     *
-     * Busca en la ruta dada (lista de paradas) que no se repita ninguna parada
-     */
+
     private boolean repeatedBusStop(LinkedList<BusStop> route) {
         boolean result=false;
         String id_aux;
@@ -277,12 +256,7 @@ public class City {
         }*/
         return result;
     }
-    /*
-     * 		Enrique nov24
-     *
-     * Para insertar una nueva BusStop (Vertice) utiliza la funcion existsBusStopID
-     * para garantizar q no exista otra con ese ID
-     */
+
     public boolean insertBusStop(String bs_string) {
         boolean result=false;
 
@@ -313,12 +287,15 @@ public class City {
         boolean result = false;
         BusStop bs1 = buscarBusStopId(bs1_string);
         BusStop bs2 = buscarBusStopId(bs2_string);
-        if((bs1 != null) && (bs2 != null)) {
+        if((bs1 != null) && (bs2 != null) && (distance > 0)) {
             LinkedList<BusStop> bsList = new LinkedList<>();
             bsList.add(bs1);
             bsList.add(bs2);
             if(!exists_thisPath_inTheGraph(bsList)){
                 this.busStopGraph.insertWEdgeNDG(busStopIndex(bs1), busStopIndex(bs2), distance);
+            }
+            else{
+                result = false;
             }
         }
         return result;
