@@ -1,6 +1,5 @@
 package logic;
 
-import cu.edu.cujae.ceis.graph.edge.WeightedEdge;
 import cu.edu.cujae.ceis.graph.vertex.Vertex;
 
 public class DijsktraVertex{

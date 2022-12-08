@@ -5,13 +5,7 @@
  */
 package logic;
 
-import java.time.LocalDate;
 import java.util.LinkedList;
-import static java.util.Spliterators.iterator;
-import static java.util.Spliterators.iterator;
-import static java.util.Spliterators.iterator;
-import static java.util.Spliterators.iterator;
-import static java.util.Spliterators.iterator;
 import javax.swing.table.DefaultTableModel;
 
 /**
